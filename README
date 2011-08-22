@@ -1,3 +1,46 @@
-# Smackdown
+# Smackdown #
 
-Smackdown is a simplified version of markdown.
+Smackdown is a very simple text to html converter. It is based on ideas from Markdown written by John Gruber and shares simular syntax.
+
+The big differences compared to Markdown is that Smackdown:
+
+* Has an interpreter implmenetation of 2k compared to 45k
+* It handles all double newlines as paragraphs
+* It handles all single newlines as breaks and does not require spaces
+* It replaces some of Markdown's builtin URL and IMG syntax with something called replacement tags.
+
+## Syntax ##
+
+### Headers ###
+
+# This is a H1 #
+## This is a H2 ##
+
+### Bold/Italics ###
+
+*This is bold*
+_This is italics*
+
+### Paragraphs ###
+
+This is one paragraph.
+
+This is the second.
+
+### Breaks ###
+
+This is first row.
+This is second row.
+
+### Tags ###
+
+Tags work by defining a row of text that will be replaced by a predefined type of object.
+
+^this is a replacement tag:1^
+
+^this is another replacement tag:2^
+
+[1:url:http://replacemnet.url/]
+[2:image:http://replacemnet/image.png]
+
+The first tag will be replaced by a link and the second by an image.
