@@ -53,19 +53,22 @@ class Smackdown
     {
 
         $p = array();
-        $p[0] = "/\[.*\]/";
-        $p[1] = "/#+ (.+)\r\n/";
+        $p[0] = "/\[[^\]]*\]/";
+        $p[1] = "/#+ (.+) #+/";
         $p[2] = "/\*(.+)\*/";
-        $p[3] = "/(\r\n\r\n)([^\r^\n]+)(\r\n\r\n)/";
-        #$p[4] = "/\r\n/";
-        #$p[2] = "/(^|\r\n)(.+)(\r\n|$)/";
+        $p[3] = "/(\r?\n){2,}/";
+        $p[4] = "/^/";
+        $p[5] = "/$/";
+        $p[6] = "/\r?\n/";
 
         $r = array();
         $r[0] = "";
-        $r[1] = "<h1>$1</h1>\r\n";
+        $r[1] = "<h1>$1</h1>";
         $r[2] = "<b>$1</b>";
-        $r[3] = "$1<p>$2</p>$3";
-        #$r[4] = "<br/>";
+        $r[3] = "</p><p>";
+        $r[4] = "<p>";
+        $r[5] = "</p>";
+        $r[6] = "<br/>";
 
         return preg_replace($p, $r, $input);
 
@@ -76,9 +79,9 @@ class Smackdown
 
         Smackdown::$tags = array();
 
-        preg_match_all("/\[([0-9]):([a-z]+):([^\]]+)\]/", $input, Smackdown::$tags, PREG_SET_ORDER);
+        preg_match_all("/\[([0-9A-z]+):([0-9A-z]+):([^\]]+)\]/", $input, Smackdown::$tags, PREG_SET_ORDER);
 
-        return preg_replace_callback("/\^([^:]+):([0-9]+)\^/", "Smackdown::get_tag", $input);
+        return preg_replace_callback("/\^([^:]+):([0-9A-z]+)\^/", "Smackdown::get_tag", $input);
 
     }
 
