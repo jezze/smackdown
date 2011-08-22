@@ -44,3 +44,18 @@ Tags work by defining a row of text that will be replaced by a predefined type o
 [2:image:http://replacemnet/image.png]
 
 The first tag will be replaced by a link and the second by an image.
+
+## Usage ##
+
+It is very simple to use smackdown. Here is an example:
+
+<?
+
+require_once('smackdown.php');
+
+$output = Smackdown::parse($input);
+
+?>
+
+Where $input is the string you wish to convert and $output is the resulting string.
+
